@@ -31,6 +31,7 @@ namespace ProAgil.WebAPI
             services.AddDbContext<DataContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("DataContext"), builder =>
                         builder.MigrationsAssembly("ProAgil.WebAPI")));
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,8 +40,9 @@ namespace ProAgil.WebAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
+            }            
 
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseHttpsRedirection();
 
             app.UseRouting();
