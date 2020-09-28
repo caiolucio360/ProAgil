@@ -1,21 +1,35 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { TooltipModule} from 'ngx-bootstrap/tooltip';
+import { BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EventosComponent } from './eventos/eventos.component';
+import { NavComponent } from './nav/nav.component';
+import { FormsModule } from '@angular/forms';
+import { DateTimeFormatPipePipe } from './_helps/DateTimeFormatPipe.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
       AppComponent,
-      EventosComponent
+      EventosComponent,
+      NavComponent,
+      DateTimeFormatPipePipe
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
-
+    HttpClientModule,
+    FormsModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
