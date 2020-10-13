@@ -74,11 +74,11 @@ namespace ProAgil.WebAPI.Controllers
             return BadRequest();
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Put(int EventoId, Evento model){
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, Evento model){
             try
             {
-                var evento = await _repo.GetEventoById(EventoId,false);
+                var evento = await _repo.GetEventoById(id,false);
                 if(evento == null) return NotFound();
 
                 _repo.Update(model);
@@ -95,14 +95,14 @@ namespace ProAgil.WebAPI.Controllers
             return BadRequest();
         } 
 
-        [HttpDelete]
-        public async Task<IActionResult> Delete(int EventoId){
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id){
             try
             {
-                var evento = await _repo.GetEventoById(EventoId,false);
+                var evento = await _repo.GetEventoById(id,false);
                 if(evento == null) return NotFound();
                 
-                _repo.Update(evento);
+                _repo.Delete(evento);
 
                 if(await _repo.SaveChagesAsync()){
                     return Ok();
