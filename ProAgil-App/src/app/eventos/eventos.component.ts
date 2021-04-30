@@ -19,12 +19,13 @@ export class EventosComponent implements OnInit {
   eventos: Evento[];
   evento: Evento;
   imagemLargura = 50;
-  imgagemMargem = 2;
-  mostarImagem = false;
+  imagemMargem = 2;
+  mostarImagem = true;
   eventosFiltrados: Evento[];
   registerForm: FormGroup;
   modoSalvar = 'post';
   bodyDeletarEvento = '';
+  _filtroLista: string;
 
   constructor(
     private eventoService: EventoService,
@@ -36,17 +37,30 @@ export class EventosComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getEventos();
-    this.validation();
+    this.getEventos() 
+       
+    this.registerForm = this.fb.group({
+      tema: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
+      local: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
+      dataEvento: ['', Validators.required],
+      qtdPessoas: ['', [Validators.required, Validators.maxLength(5), Validators.pattern("^[0-9]*$")]],
+      imagemUrl: ['', [Validators.required]],
+      telefone: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]]
+    })
   }
 
-  _filtroLista: string;
+ 
   get filtroLista(): string {
     return this._filtroLista;
   }
   set filtroLista(value: string) {
     this._filtroLista = value;
     this.eventosFiltrados = this.filtroLista ? this.filtrarEventos(this.filtroLista) : this.eventos;
+  }
+
+  AbriImagem(){
+    console.log('aaa')
   }
 
   editEvento(evento: Evento, template: any) {
@@ -112,15 +126,7 @@ export class EventosComponent implements OnInit {
   }
 
   validation() {
-    this.registerForm = this.fb.group({
-      tema: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
-      local: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
-      dataEvento: ['', Validators.required],
-      qtdPessoas: ['', [Validators.required, Validators.maxLength(5), Validators.pattern("^[0-9]*$")]],
-      imagemUrl: ['', [Validators.required]],
-      telefone: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]]
-    })
+    
   }
 
   alternarImagem() {

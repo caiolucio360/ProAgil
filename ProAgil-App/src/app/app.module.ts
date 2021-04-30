@@ -5,9 +5,6 @@ import { TooltipModule} from 'ngx-bootstrap/tooltip';
 import { BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EventosComponent } from './eventos/eventos.component';
@@ -15,13 +12,15 @@ import { NavComponent } from './nav/nav.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DateTimeFormatPipePipe } from './_helps/DateTimeFormatPipe.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
       AppComponent,
       EventosComponent,
       NavComponent,
-      DateTimeFormatPipePipe
+      DateTimeFormatPipePipe,
+      HomeComponent
    ],
   imports: [
     BrowserModule,
